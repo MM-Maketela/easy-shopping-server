@@ -1,12 +1,13 @@
 import express from "express"
 import dotenv from "dotenv"
+import cors from 'cors'
 import client_router from "./api/routes/client.routes.js"
 import user_router from "./api/routes/user.routes.js"
 import multer from 'multer'
 dotenv.config()
 const app = express()
+app.use(cors())
 app.use(express.json())
-
 
 const storage = multer.memoryStorage({
     destination: function (req, file, cb) {
