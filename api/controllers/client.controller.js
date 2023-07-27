@@ -7,7 +7,6 @@ let client_controller = {
     addProduct:(req, res)=>{
         const body = req.body;
         console.log(body)
-        const salt = genSaltSync(10);
         addProduct(body,(error,results)=>{
             if(error) {
                 console.log(error)
