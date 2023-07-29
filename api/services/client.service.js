@@ -8,23 +8,26 @@ let client_services = {
             `INSERT INTO  products(id, name, category, price, discount,details, new, inStock, image1, image2, image3, image4) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
             [
                 body.id,
-                body.name,
+                body.productName,
                 body.category, 
                 body.price, 
                 body.discount, 
                 body.details, 
                 body.new, 
                 body.inStock,
-                body.image1,  
-                body.image2,
-                body.image3, 
-                body.image4
+                body.image0,  
+                body.image1,
+                body.image2, 
+                body.image3
 
             ],
             (error, results, fields)=>{
-
-                if(error) callback(error)
+                if(error){
+                    callback(error)
+                return
+                }
                 callback(null, results)
+                return
                 
 
             }
@@ -37,9 +40,12 @@ let client_services = {
             `SELECT * FROM products`,[],
             (error, results, fields)=>{
 
-                if(error) callback(error)
-                
+                if(error){
+                    callback(error)
+                return
+                }
                 callback(null, results)
+                return
 
             }
         )
@@ -52,8 +58,12 @@ let client_services = {
             [id],
             (error, results, fields)=>{
 
-                if(error) callback(error)
+                if(error){
+                    callback(error)
+                return
+                }
                 callback(null, results)
+                return
 
             }
         )
@@ -62,23 +72,27 @@ let client_services = {
         databaseConnection.query(
             `UPDATE products SET  name =?, category=?, price=?, discount=?, details=?, new=?, inStock=?, image1=?, image2=?, image3=?, image4=? WHERE id=?`,
             [
-                body.name,
+                body.productName,
                 body.category, 
                 body.price, 
                 body.discount, 
                 body.details, 
                 body.new, 
                 body.inStock,
-                body.image1, 
-                body.image2,
-                body.image3, 
-                body.image4 ,
+                body.image0, 
+                body.image1,
+                body.image2, 
+                body.image3 ,
                 body.id
             ],
             (error, results, fields)=>{
 
-                if(error) callback(error)
+                if(error){
+                    callback(error)
+                return
+                }
                 callback(null, results)
+                return
 
             }
         )
@@ -89,8 +103,12 @@ let client_services = {
             [id],
             (error, results, fields)=>{
 
-                if(error) callback(error)
+                if(error){
+                    callback(error)
+                return
+                }
                 callback(null, results)
+                return
             }
         )
     }
