@@ -8,6 +8,4 @@ client_router.get("/", getProducts)
 client_router.get("/:id",getProductById)
 client_router.patch("/:id", updateProduct)
 client_router.delete("/:id",removeProduct)
-
-
 export  default client_router;

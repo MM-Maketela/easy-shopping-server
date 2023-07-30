@@ -35,7 +35,7 @@ let client_services = {
 
     },
 
-    getProducts:callback=>{
+    getProducts:(callback) =>{
         databaseConnection.query(
             `SELECT * FROM products`,[],
             (error, results, fields)=>{
@@ -43,6 +43,9 @@ let client_services = {
                 if(error){
                     callback(error)
                 return
+                }
+                else if (!results){
+                    callback(results)
                 }
                 callback(null, results)
                 return

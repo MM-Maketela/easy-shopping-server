@@ -63,14 +63,13 @@ let client_controller = {
                     message:results
                 })
                 return res.status(200).json({
-                    success:0,
+                    success:1,
                     data:results
                 })
         })
     },
     updateProduct:(req, res)=>{
-        const body = req.body
-
+        const body = handleBody(req.body, req.files)
         updateProduct(body, (error, results)=>{
             if(error) return res.status(500).json({
                 success:0,
@@ -81,7 +80,7 @@ let client_controller = {
                 message:error
             })
             return res.status(200).json({
-                success:0,
+                success:1,
                 data:results
             })
 
@@ -90,12 +89,13 @@ let client_controller = {
 
     removeProduct:(req, res)=>{
         const id = req.params.id
+        console.log(id)
         removeProduct(id, (error, results)=>{
             if(error) return res.json({
                 success:0,
                 message:error
             })
-            if(!error) return res.json({
+            if(!results) return res.json({
                 success:0,
                 message:error
             })
