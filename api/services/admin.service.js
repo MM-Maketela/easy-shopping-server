@@ -1,25 +1,22 @@
 import databaseConnection from '../config/database.js'
 
-let client_services = {
+let admin_services = {
 
-    addProduct:(body, callback)=>{
+    addClient:(body, callback)=>{
 
         databaseConnection.query(
-            `INSERT INTO  products(id, productName, category, price, discount,details, new, inStock, image0, image1, image2, image3) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            `INSERT INTO  clients(id, name, surname, email, contact, address, companyName, registration, companyEmail, companyContact) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
             [
                 body.id,
-                body.productName,
-                body.category,
-                body.price, 
-                body.discount, 
-                body.details, 
-                body.new, 
-                body.inStock,
-                body.image0,  
-                body.image1,
-                body.image2, 
-                body.image3
-
+                body.name,
+                body.surname, 
+                body.email, 
+                body.contact, 
+                body.address, 
+                body.companyName, 
+                body.registration,
+                body.companyEmail,  
+                body.companyContact
             ],
             (error, results, fields)=>{
                 if(error){
@@ -35,9 +32,9 @@ let client_services = {
 
     },
 
-    getProducts:(callback) =>{
+    getClients:(callback) =>{
         databaseConnection.query(
-            `SELECT * FROM products`,[],
+            `SELECT * FROM clients`,[],
             (error, results, fields)=>{
 
                 if(error){
@@ -55,9 +52,9 @@ let client_services = {
 
     },
 
-    getProductById:(id, callback)=>{
+    getClientById:(id, callback)=>{
         databaseConnection.query(
-            `SELECT * FROM products  WHERE id=?`,
+            `SELECT * FROM clients  WHERE id=?`,
             [id],
             (error, results, fields)=>{
 
@@ -71,21 +68,19 @@ let client_services = {
             }
         )
     },
-    updateProduct:(body, callback)=>{
+    updateClient:(body, callback)=>{
         databaseConnection.query(
-            `UPDATE products SET  productName =?, category=?, price=?, discount=?, details=?, new=?, inStock=?, image0=?, image1=?, image2=?, image3=? WHERE id=?`,
+            `UPDATE clients SET  name =?, surname=?, email=?, contact=?, address=?, companyName=?, registration=?, companyEmail=?, companyContact=? WHERE id=?`,
             [
-                body.productName,
-                body.category, 
-                body.price, 
-                body.discount, 
-                body.details, 
-                body.new, 
-                body.inStock,
-                body.image0, 
-                body.image1,
-                body.image2, 
-                body.image3 ,
+                body.name,
+                body.surname, 
+                body.email, 
+                body.contact, 
+                body.address, 
+                body.companyName, 
+                body.registration,
+                body.companyEmail,  
+                body.companyContact,
                 body.id
             ],
             (error, results, fields)=>{
@@ -100,9 +95,9 @@ let client_services = {
             }
         )
     },
-    removeProduct:(id, callback)=>{
+    removeClient:(id, callback)=>{
         databaseConnection.query(
-            `DELETE FROM products WHERE id=?`,
+            `DELETE FROM clients WHERE id=?`,
             [id],
             (error, results, fields)=>{
 
@@ -117,4 +112,4 @@ let client_services = {
     }
 
 }
-export default client_services
+export default admin_services

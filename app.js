@@ -3,6 +3,7 @@ import dotenv from "dotenv"
 import cors from 'cors'
 import client_router from "./api/routes/client.routes.js"
 import user_router from "./api/routes/user.routes.js"
+import admin_router from './api/routes/admin.routes.js'
 import multer from 'multer'
 dotenv.config()
 const app = express()
@@ -19,6 +20,8 @@ const storage = multer.memoryStorage({
   })
   const upload = multer({ storage: storage })
 
+// admin 
+// app.use('user/products',admin_router)
 // client
 app.use('/client/products',upload.any(),client_router)
 
